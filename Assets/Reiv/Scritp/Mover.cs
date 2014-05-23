@@ -63,29 +63,27 @@ public class Mover : MonoBehaviour {
 
 
 	public EnumDirecao calcDirecaoDestino(Vector3 positon){
-		Vector3 origem = arredondar(transform.position.normalized);
-		Vector3 destino = arredondar(positon.normalized);
-
-		//Debug.Log ("Origem " + origem.x + " " + origem.z);
-
-
-		if ((origem.x > destino.x) && (origem.z > destino.z)) {
-			return EnumDirecao.SUDOESTE;
-		} else if ((origem.x < destino.x) && (origem.z < destino.z)) {
-			return EnumDirecao.SUDESTE;
-		} else if ((origem.x > destino.x) && (origem.z < destino.z)) {
-			return EnumDirecao.NOROESTE;
-		} else if ((origem.x < destino.x) && (origem.z > destino.z)) {
-			return EnumDirecao.NORDESTE;
-		} else if ((origem.x == destino.x) && (origem.z > destino.z)) {
-			return EnumDirecao.SUL;
-		} else if ((origem.x == destino.x) && (origem.z < destino.z)) {
-			return EnumDirecao.NORTE;
-		} else if ((origem.x > destino.x) && (origem.z == destino.z)) {
-			return EnumDirecao.OESTE;
-		} else if ((origem.x < destino.x) && (origem.z == destino.z)) {
-			return EnumDirecao.LESTE;
-		} else  
+			Vector3 origem = arredondar (transform.position);
+			Vector3 destino = arredondar (positon);
+			if ((origem.x == destino.x) && (origem.z == destino.z)) {
+					return EnumDirecao.PARADO;
+			} else if ((origem.x > destino.x) && (origem.z > destino.z)) {
+					return EnumDirecao.SUDOESTE;
+			} else if ((origem.x < destino.x) && (origem.z < destino.z)) {
+					return EnumDirecao.SUDESTE;
+			} else if ((origem.x > destino.x) && (origem.z < destino.z)) {
+					return EnumDirecao.NOROESTE;
+			} else if ((origem.x < destino.x) && (origem.z > destino.z)) {
+					return EnumDirecao.NORDESTE;
+			} else if ((origem.x == destino.x) && (origem.z > destino.z)) {
+					return EnumDirecao.SUL;
+			} else if ((origem.x == destino.x) && (origem.z < destino.z)) {
+					return EnumDirecao.NORTE;
+			} else if ((origem.x > destino.x) && (origem.z == destino.z)) {
+					return EnumDirecao.OESTE;
+			} else if ((origem.x < destino.x) && (origem.z == destino.z)) {
+					return EnumDirecao.LESTE;
+			} 
 			return EnumDirecao.PARADO;
 		}
 
