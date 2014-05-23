@@ -20,6 +20,7 @@ public class Mover : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
 	{
+
 	}
 	
 
@@ -28,14 +29,23 @@ public class Mover : MonoBehaviour {
 		if (controller.isGrounded) {
 			direcaoAtual = direcao;
 			moveDirection = getVectorDirecao(direcao);
+
 			moveDirection = transform.TransformDirection(moveDirection);
 			moveDirection *= speed;
 			if (pula)
 				moveDirection.y = jumpSpeed;
+
+
 		}
 		moveDirection.y -= gravity * Time.deltaTime;
+
 		return controller.Move(moveDirection * Time.deltaTime);
 		
+	}
+
+	public void LookAtDirection (Vector3 direcao)
+	{
+		transform.LookAt (direcao);
 	}
 
 	private Vector3 getVectorDirecao(EnumDirecao direcao){

@@ -24,6 +24,7 @@ public class Rondar : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
+
 		Mover.EnumDirecao direcao = mover.calcDirecaoDestino ((Vector3)pontosRonda[indexPontoAtual]);
 		mover.Movimenta(direcao);
 
@@ -31,7 +32,6 @@ public class Rondar : MonoBehaviour
 			indexPontoAtual++;
 			if (indexPontoAtual > (pontosRonda.Count - 1))
 				indexPontoAtual = 0;
-			Debug.Log(indexPontoAtual);
 		}
 	}
 
