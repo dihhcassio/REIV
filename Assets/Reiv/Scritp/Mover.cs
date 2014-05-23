@@ -27,9 +27,8 @@ public class Mover : MonoBehaviour {
 	public CollisionFlags Movimenta(EnumDirecao direcao, bool pula = false){
 		 
 		if (controller.isGrounded) {
-			direcaoAtual = direcao;
+			DirecaoAtual = direcao;
 			moveDirection = getVectorDirecao(direcao);
-
 			moveDirection = transform.TransformDirection(moveDirection);
 			moveDirection *= speed;
 			if (pula)
@@ -38,14 +37,18 @@ public class Mover : MonoBehaviour {
 
 		}
 		moveDirection.y -= gravity * Time.deltaTime;
+		//RotateToDirection (direcao);
 
+		float angle = Vector3.Angle (moveDirection, transform.transform.position);
+		transform.Rotate (new Vector3(0, angle*Time.deltaTime, 0));
 		return controller.Move(moveDirection * Time.deltaTime);
 		
 	}
 
-	public void LookAtDirection (Vector3 direcao)
+	public void RotateToDirection (EnumDirecao direcao)
 	{
-		transform.LookAt (direcao);
+		float angle = Vector3.Angle (getVectorDirecao(direcao), transform.transform.position);
+		transform.Rotate (new Vector3(0, angle*Time.deltaTime, 0));
 	}
 
 	private Vector3 getVectorDirecao(EnumDirecao direcao){
