@@ -66,18 +66,10 @@ public class Mover : MonoBehaviour {
 		Vector3 origem = arredondar(transform.position.normalized);
 		Vector3 destino = arredondar(positon.normalized);
 
-		Debug.Log ("Origem " + origem.x + " " + origem.z);
+		//Debug.Log ("Origem " + origem.x + " " + origem.z);
 
 
-		if ((origem.x == destino.x) && (origem.z > destino.z)) {
-			return EnumDirecao.SUL;
-		} else if ((origem.x == destino.x) && (origem.z < destino.z)) {
-			return EnumDirecao.NORTE;
-		} else if ((origem.x > destino.x) && (origem.z == destino.z)) {
-			return EnumDirecao.OESTE;
-		} else if ((origem.x < destino.x) && (origem.z == destino.z)) {
-			return EnumDirecao.LESTE;
-		} else if ((origem.x > destino.x) && (origem.z > destino.z)) {
+		if ((origem.x > destino.x) && (origem.z > destino.z)) {
 			return EnumDirecao.SUDOESTE;
 		} else if ((origem.x < destino.x) && (origem.z < destino.z)) {
 			return EnumDirecao.SUDESTE;
@@ -85,12 +77,20 @@ public class Mover : MonoBehaviour {
 			return EnumDirecao.NOROESTE;
 		} else if ((origem.x < destino.x) && (origem.z > destino.z)) {
 			return EnumDirecao.NORDESTE;
-		} else 
+		} else if ((origem.x == destino.x) && (origem.z > destino.z)) {
+			return EnumDirecao.SUL;
+		} else if ((origem.x == destino.x) && (origem.z < destino.z)) {
+			return EnumDirecao.NORTE;
+		} else if ((origem.x > destino.x) && (origem.z == destino.z)) {
+			return EnumDirecao.OESTE;
+		} else if ((origem.x < destino.x) && (origem.z == destino.z)) {
+			return EnumDirecao.LESTE;
+		} else  
 			return EnumDirecao.PARADO;
 		}
 
 	private Vector3 arredondar(Vector3 vector){
-		return new Vector3 (Mathf.Round(vector.x * 100), Mathf.Round(vector.y* 100), Mathf.Round(vector.z* 100));
+		return new Vector3 (Mathf.Round(vector.x * 10), Mathf.Round(vector.y* 10), Mathf.Round(vector.z* 10));
 	}
 
 	public EnumDirecao DirecaoAtual {
